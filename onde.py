@@ -77,7 +77,6 @@ MODE=2 #Nombre de modes spatiaux
 
 #Création de la matrice triagonale D
 D=M(Nx)
-print(D)
 
 #Création de la matrice U des résultats
 U=zeros((Nx,Nt),float)
@@ -98,7 +97,6 @@ Cl[Nx-1]=unl
 for j in range(1,Nt-1):
   U[:,[j+1]]=dot(D,U[:,[j]])-U[:,[j-1]]+Cl
 
-print(U)
 
 # Affichage de la solution Sans animation
 fig = plt.figure(figsize=(7,4))
