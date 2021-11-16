@@ -54,7 +54,7 @@ def init_U1(n):
         U1[i]= 16*U0[i]
     U1[0]=U1[n]=0.0 #Conditions initiales à modifier 
 
-return U1
+    return U1
 
 #Initialise la matrice colonne avec les valeurs à l'état t=2
 def init_U2(n):
@@ -78,14 +78,14 @@ def init_U3(n):
     #Initialisation des tableaux
     U0=init_U0(n+1)
     U1=init_U1(n+1)
-    U2=init_U1(n+1)
+    U2=init_U2(n+1)
     U3=zeros((n+1,1),float)
 
     for i in range (1,n):
         U3[i]= 16*U2[i] + 30*(1-alpha**2)*U1[i] + (alpha**2)*(U1[i+2] +U1[i-1]) +(alpha**2)*U1[i-2] -16*U0[i]
     U3[0]=U3[n]=0.0 #Conditions initiales à modifier    
 
-    return U2
+    return U3
 
 #caractéristique physique 
 c=340 #m.s^-1   célérité de l'onde
@@ -133,7 +133,7 @@ Cl[0]=u0l
 Cl[Nx]=unl
 
 #Calcul du reste des valeurs
-for j in range(1,Nt):
+for j in range(3,Nt-2):
     U[:,[j+2]]=16*U[:,[j+1]] + dot(D,U[:,[j]]) - 16*U[:,[j-1]] + U[:,[j-2]] + Cl
 
 # Affichage de la solution Sans animation 
