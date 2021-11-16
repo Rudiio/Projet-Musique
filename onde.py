@@ -10,7 +10,7 @@ def M(n):
   """int -> array(n,n)
  Renvoie matrice diagonale de dimension n*n contenant les coefficients du systeme"""
 
-  M = zeros((n+1,n+1),float)
+  M = zeros((n,n),float)
 
   for i in range(0,n):
     if(i==0):                                   #pour la première ligne de la matrice
@@ -29,11 +29,11 @@ def init_U0(n):
   """int -> array(n,1)
   Retourne une matrice colonne composée des valeurs de l'onde à l'état initial t=0 """
 
-  U0=zeros((n+1,1),float)
+  U0=zeros((n,1),float)
 
-  for i in range(0,n+1):
+  for i in range(0,n):
     U0[i,0]=sin((MODE*pi/L)*(i*dx));
-  U0[n,0]=0
+  U0[n-1,0]=0
   return U0
 
 
@@ -43,12 +43,12 @@ def init_U1(n):
   """int -> array(n,1)
   Retourne une matrice colonne composée des valeurs de l'onde à l'état initial t=1 """
   #Initialisation des tableaux
-  U0=init_U0(n+1)
-  U1=zeros((n+1,1),float)
+  U0=init_U0(n)
+  U1=zeros((n,1),float)
 
-  for i in range (1,n):
+  for i in range (1,n-1):
     U1[i]= alpha**2*(U0[i-1] - 2*U0[i]+U0[i+1])+2*U0[i]
-  U1[0]=U1[n]=0.0 #Conditions initiales à modifier 
+  U1[0]=U1[n-1]=0.0 #Conditions initiales à modifier 
   
   return U1
 
@@ -57,15 +57,15 @@ c=340 #m.s^-1   célérité de l'onde
 
 #Paramètres discrétisation de l'espace - maillage spatiale - indice i
 L=0.58  #Longueur de la corde en m
-dx=0.01 #pas entre deux points de l'espace
+dx=0.001 #pas entre deux points de l'espace
 Nx=int(L/dx) #Nombre de points de l'espace
-X=linspace(0,L,Nx+1)
+X=linspace(0,L,Nx)
 
 #Paramètre de discrétisation du temps -maillage temporel - indice n
 Duree=0.005  #Durée de la mesure de l'onde en seconde
 dt=dx/c  #pas dans le temps
 Nt=int(Duree/dt)  #Nombre de points dans l'espace
-T=linspace(0,Duree,Nt+1)
+T=linspace(0,Duree,Nt)
 
 #Conditions aux limites
 u0l=0     
@@ -77,9 +77,10 @@ MODE=2 #Nombre de modes spatiaux
 
 #Création de la matrice triagonale D
 D=M(Nx)
+print(D)
 
 #Création de la matrice U des résultats
-U=zeros((Nx+1,Nt+1),float)
+U=zeros((Nx,Nt),float)
 
 #Conditions initiales
 U0=init_U0(Nx)
@@ -89,13 +90,15 @@ U[:,[1]]=U1
 
 
 #Matrices des conditions limites
-Cl=zeros((Nx+1,1),float)
+Cl=zeros((Nx,1),float)
 Cl[0]=u0l
-Cl[Nx]=unl
+Cl[Nx-1]=unl
 
 #Calcul du reste des valeurs
-for j in range(1,Nt):
+for j in range(1,Nt-1):
   U[:,[j+1]]=dot(D,U[:,[j]])-U[:,[j-1]]+Cl
+
+print(U)
 
 # Affichage de la solution Sans animation
 fig = plt.figure(figsize=(7,4))
