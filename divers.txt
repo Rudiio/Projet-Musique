@@ -1,0 +1,15 @@
+La vitesse de propagation d'une onde mécanique sur une corde est donnée par la racine carrée du rapport 
+entre la tension dans la corde et sa masse par unité de longueur.
+
+https://perso.uclouvain.be/alain.jonas/Cours/FSAB1203/Ondes_stationnaires/CordeVibrante.htm
+
+c^2=T/µ
+
+http://ressources.univ-lemans.fr/AccesLibre/UM/Pedago/physique/02/meca/violon.html
+
+démo d'alembert et justification de la formule pour c
+https://zestedesavoir.com/tutoriels/1836/physique-de-la-corde-de-guitare/
+
+Un guitariste met en vibration la corde de sa guitare émettant la note mi1. La longueur l
+de cette corde vaut 0,65 m et sa masse volumique µ vaut 5,8.10-3 kg.m-1
+http://ww2.ac-poitiers.fr/sc_phys/sites/sc_phys/IMG/pdf/tmd_sciences_physiques.pdf
