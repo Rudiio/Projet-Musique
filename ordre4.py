@@ -72,7 +72,7 @@ def init_U2(n):
     return U2
 
 #Initialise la matrice colonne avec les valeurs à l'état t=3
-def init_U2(n):
+def init_U3(n):
     """int -> array(n,1)
     Retourne une matrice colonne composée des valeurs de l'onde à l'état initial t=3 """
     #Initialisation des tableaux
