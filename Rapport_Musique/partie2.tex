@@ -1,0 +1,57 @@
+\part{Etude de l'équation des ondes}
+
+\section{Caractérisation du problème}
+
+\subsection{Présentation de l'équation}
+
+L'équation de d'Alembert (appelée aussi équation d'onde ou équation des ondes) est l'équation générale qui décrit la propagation d'une onde, qui peut être représentée par une grandeur scalaire ou vectorielle. 
+Elle s'écrit : 
+
+\begin{equation*}
+\frac{\partial^2u}{\partial t^2} = c^{2}\frac{\partial^2u}{\partial x^2}
+\end{equation*}
+ 
+Pour la résoudre, nous avons besoin de la condition de Neumann :
+\begin{equation*}
+\frac{\partial u}{\partial t} (0,x) = f(x)
+\end{equation*}
+et de la condition de Dirichlet : u(0,x) = g(x)\\
+où f et g sont des fonctions quelconques d'une seule variable.\\
+
+Cette équation peut être résolue mathématiquement (solution dite exacte) pour des modèles simples tels que celui d'une corde que l'on étudiera.\\
+La solution exacte de l'équation d'onde est de la forme :
+u(t,x) = f(x-ct) + g(x+ct) avec f et g des fonctions quelconques d'une seule variable.  \\
+
+Cependant, dans ce projet, on s'intéressera à appliquer des méthodes d'analyse numérique pour résoudre l'équation d'onde (solutions approchées).\\
+
+Des ondes stationnaires sont créées sur la corde par le musicien. Comme dans le problème, la corde est fixée, il faut que la fonction u(x,t) s'annule sur ses bornes.\\
+On obtient alors les conditions initiales suivantes :\\
+\begin{equation*}
+\left \{
+\begin{array}{rcl}
+u(0,t)=0\\
+u(L,t)=0\\
+\end{array}
+\right.
+\end{equation*}\\
+
+
+\section{Etude physique de la corde}
+
+La vitesse de propagation de l'onde sur la corde dépend de la tension de celle-ci:
+
+\begin{equation*}
+v = \sqrt{\frac{\tau}{\rho}}
+\end{equation*}
+
+avec \\
+\hspace*{2cm} $\tau$ qui représente la tension, \\
+\hspace*{2cm} $\rho$ la masse par unité de longueur, ou densité linéique.\\
+
+Plus une corde est tendue, plus la vitesse de propagation d’une onde y sera élevée.\
+
+On prendra par la suite comme valeurs 0,5 m pour la longueur l de cette corde et 5,8.10-3 kg.m-1 pour la densité linéique $\rho$.\
+
+On pourra alors faire varier la tension de la corde et en observer les conséquences.
+
+

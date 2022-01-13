@@ -1,0 +1,387 @@
+\part{Discrétisation et modélisation}
+
+\section{Principe}
+
+On  considère  une  équation  différentielle  ordinaire  (EDO) $u'(t)=f(t,u(t))$. Lorsqu'on ne  connaît pas de solution exacte à cette EDO, on essaye d'en avoir une bonne approximation par  des méthodes numériques.
+
+Cette équation écrit comment varie une fonction, en un point donné (un instant ou un point de l'espace), connaissant la valeur de cette fonction mathématique, le problème à résoudre s'écrit:
+
+\begin{equation*}
+\left \{
+\begin{array}{rcl}
+u'(t)=f(t,u(t))\\
+u(t=t_0) = u_0 \\
+\end{array}
+\right.
+\end{equation*}
+
+Nous  allons par  exemple  observer  $u$  sur un intervalle de  temps
+régulier de pas h. Nous  allons  essayer  d'obtenir  une suite  d'approximations  $u_n$  de
+$u(t_n)$.\\
+
+Considérons le problème monodimensionnel de la vibration d'une corde de guitare. Le schéma de la vibration de guitare vérifie l'équation de d'Alembert :
+\begin{equation*}
+\frac{\partial^2u}{\partial t^2} = c^{2}\frac{\partial^2u}{\partial x^2}
+\end{equation*}
+où $c$ est la vitesse de l'onde.\\
+
+Ici, il ne s'agit pas d'une EDO mais d'une EDP (Equation aux Dérivées Partielles). Nous allons donc utiliser la méthode des différences finies.\\
+
+La première étape consiste à discrétiser l'espace et le temps en des nombres finis d'intervalles de dimension connue appelé pas de discrétisation, respectivement $\Delta x$ et $\Delta t$. C'est le maillage.
+
+On remplace ensuite les dérivées apparaissant dans l'équation par des quotients aux différences obtenus à partir d'un développement de Taylor à un ordre fixé selon la précision recherchée. Il s'agit de la méthode des différences finies qui permet d'approcher les valeurs des dérivées.\\
+
+\section{Euler}
+
+L'intervalle [0,L] est discrétisé en $Nx+1$ noeuds de coordonnées $x_{i}$ (i variant de 0 à $N$) régulièrement espacés. Notons $\Delta x$ le pas d'espace. L'intervalle de temps [0,Duree] est discrétisé quant à lui en Nt intervalles de pas constant $\Delta t$. Notons $u^{n}_{i}$ l'amplitude de la corde au noeud $x_{i} = i\Delta x$ et à l'instant $t = n\Delta t$\\\\
+
+\subsection{Explicite}
+
+La méthode d'Euler explicite consiste à considérer que, d'un point $t^n_{i}$ au point $t^{n+1}_{i}$, la fonction évolue linéairement, avec une trajectoire qui est celle qu'on peut calculer au point $t_i$.\\
+On peut alors approximer la fonction $(u(t_n,x_i)$ en  calculant $u^{n+1}_{i}$ connaissant $u^n_{i}$.\\
+
+
+Le problème se résout donc de la façon suivante:\\
+$\rightarrow$ on connaît la fonction f, un point tn où on connaît $u^n_{i}$\\
+$\rightarrow$ on peut donc calculer $u'(t)=f(t,u(t))$ \\
+$\rightarrow$ on estime alors la valeur de u au point $t_{n+1} = t_n + \Delta t$ : $u_{n+1} \approx u_n + u'_n\Delta t$\\
+$\rightarrow$ on peut alors itérer (résoudre pas à pas) pour passer au point suivant. Le problème est initialisé en partant de $t_0$ où on connaît $u_0$ (condition à la limite).\\
+
+
+On obtient à partir de le méthode des différences finies les schémas centré d'ordre 2 pour les dérivées spatiale et temporelle : 
+\begin{equation*}
+(\frac{\partial^2u}{\partial t^2})^{n}_{i} = \frac{u^{n+1}_{i} - 2u^{n}_{i} + u^{n-1}_{i}}{\Delta t^2}
+\end{equation*}
+\vspace*{3 mm}
+\begin{equation*}
+(\frac{\partial^2u}{\partial x^2})^{n}_{i} = \frac{u^{n}_{i+1} - 2u^{n}_{i} + u^{n}_{i-1}}{\Delta x^2}
+\end{equation*}
+\vspace*{3 mm}
+\begin{equation*}
+\frac{u^{n+1}_{i} - 2u^{n}_{i} + u^{n-1}_{i}}{\Delta t^2} = c^2 \frac{u^{n}_{i+1} - 2u^{n}_{i} + u^{n}_{i-1}}{\Delta x^2}
+\end{equation*}
+\hspace*{0.6cm} On pose :
+\begin{equation*}
+\lambda = c \frac{\Delta t}{\Delta x}
+\end{equation*}
+\hspace*{0.6cm} ce qui donne
+\begin{equation*}
+u^{n+1}_{i} - 2u^{n}_{i} + u^{n-1}_{i} = \lambda ^2 (u^{n}_{i+1} - 2u^{n}_{i} + u^{n}_{i-1})
+\end{equation*}
+\vspace*{3 mm}
+\begin{equation*}
+\Leftrightarrow
+\boxed{
+u^{n+1}_{i} = \lambda ^2 u^{n}_{i+1} + (2 - 2\lambda ^2)u^{n}_{i} - u^{n-1}_{i} + \lambda ^2 u^{n}_{i-1}}
+\end{equation*}
+
+\vspace*{7 mm}
+
+Posons U = 
+\begin{math}
+\begin{pmatrix}
+u_{1}\\
+u_{2}\\
+\vdots \\
+\vdots \\
+u_{N-2}\\
+u_{N-1}
+\end{pmatrix}
+, \hspace{3 mm} A = 
+\begin{pmatrix}
+(2-2\lambda ^2) & \lambda ^2 & 0 & \cdots & \cdots & 0\\
+\lambda ^2 & (2-2\lambda ^2) & \lambda ^2 & 0 & \cdots & \vdots\\
+0 & \ddots & \ddots & \ddots & \cdots & \vdots\\
+\vdots & \vdots & \ddots & \ddots & \ddots & 0\\
+\vdots & \vdots & 0 &\lambda ^2 & (2-2\lambda ^2) & \lambda ^2 \\
+0 & \cdots & \cdots & 0 & \lambda ^2 & (2-2\lambda ^2)
+\end{pmatrix}
+et \hspace{3 mm} C = 
+\begin{pmatrix}
+u_{l0}\\
+0\\
+\vdots \\
+\vdots \\
+0\\
+u_{lN}
+\end{pmatrix}
+\end{math}
+
+\vspace*{7 mm}\\
+alors\\
+
+\begin{equation*}
+U^{n+1}_i = A.U^{n}_i - U^{n-1}_i + C_i\\
+\end{equation*}
+
+On va donc résoudre cette équation en prenant des conditions initiales cohérentes. La corde de guitare est fixée à ses extrémités et admet un momentum initial lorsque t=0 (que l'on définira lors des expérimentations).
+
+Conditions initiales: 
+\begin{equation*}
+\left \{
+\begin{array}{rcl}
+u^{n}_{0}& = & 0 \hspace*{4 mm} \forall n\\
+u^{n}_{L}& = &0 \hspace*{4 mm} \forall n\\
+\end{array}
+\right.
+\end{equation*}
+
+Donc $C = 0$\\
+
+Soit
+\begin{equation*}
+\boxed{
+U^{n+1}_i = A.U^{n}_i - U^{n-1}_i}
+\end{equation*}
+
+On a donc la formule de récurrence cherchée pour approximer la suite $u^n_i$.
+\newline
+\newline
+De plus, nous avons besoin de déterminer $u^1_i$ $\forall i$ pour utiliser notre schéma D'Euler. Ainsi, l'on utiliser les conditions initiales du problème pour obtnenir ces valeurs:
+\begin{equation*}
+\left \{
+\begin{array}{rcl}
+\frac{\partial u}{\partial t} (0,x) = f(x)\hspace*{4 mm}\\
+ u(0,x) = g(x) \hspace*{4 mm} \\
+\end{array}
+\right.
+\end{equation*}
+
+On a donc par la méthode des différences finies:
+\begin{equation*}
+\frac{u^{n+1}_{i} - u^{n}_{i}}{\Delta t} = \frac{\partial u}{\partial t}
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow \frac{u^{1}_{i} - u^{0}_{i}}{\Delta t} = \frac{\partial u(x,0)}{\partial t}
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow \frac{\partial u(x,0)}{\partial t} = \frac{u^{1}_{i} - u^{0}_{i}}{\Delta t}
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow u^{1}_{i} = \Delta t \frac{\partial u(x,0)}{\partial t} + u^{0}_{i}
+\end{equation*}\\
+D'où:
+\begin{equation*}
+\left \{
+\begin{array}{rcl}
+u^0_i = u(x,0) \hspace*{4 mm} \forall n\\
+u^1_i = \Delta t \frac{\partial u(x,0)}{\partial t} + u(x,0) \hspace*{4 mm} \forall n\\
+\end{array}
+\right.
+\end{equation*}
+
+\subsection{Implicite}
+
+On reprend ici les mêmes notations. La méthode d'Euler implicite consiste à chercher la valeur approchée à l'instant $t_{n+1}$ avec la relation suivante :
+$u^{n+1}_i \approx u^n_i + u'^{n+1}_i\Delta t$\\
+
+On va donc utiliser une approche pour discrétiser l'équation au noeud $x_{i}$ et à l'itération $n+1$:\\
+\begin{equation*}
+(\frac{\partial u}{\partial t})^{n+1}_{i} = c^2 (\frac{\partial^2u}{\partial t^2})^{n+1}_{i}
+\end{equation*}
+Nous utilisons un schéma arrière d'ordre 2 pour évaluer la dérivée seconde temporelle:
+\begin{equation*}
+(\frac{\partial^2u}{\partial t^2})^{n+1}_{i} = \frac{u^{n+1}_{i} - 2u^{n}_{i} + u^{n-1}_{i}}{\Delta t^2}
+\end{equation*}
+Ainsi qu'un schéma centré d'ordre 2 pour la dérivée seconde en espace:
+\begin{equation*}
+(\frac{\partial^2u}{\partial x^2})^{n+1}_{i} = \frac{u^{n+1}_{i+1} - 2u^{n+1}_{i} + u^{n+1}_{i-1}}{\Delta x^2}
+\end{equation*}
+On pose :
+\begin{equation*}
+\lambda = c \frac{\Delta t}{\Delta x}
+\end{equation*}
+Alors d'après l'équation de discrétisation:
+\begin{equation*}
+(\frac{\partial u}{\partial t})^{n+1}_{i} = c^2 (\frac{\partial^2u}{\partial t^2})^{n+1}_{i}
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow\frac{u^{n+1}_{i} - 2u^{n}_{i} + u^{n-1}_{i}}{\Delta t^2} = c^2 \frac{u^{n+1}_{i+1} - 2u^{n+1}_{i} + u^{n+1}_{i-1}}{\Delta x^2}
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow u^{n+1}_{i} - 2u^{n}_{i} + u^{n-1}_{i} = \lambda ^2 (u^{n+1}_{i+1} - 2u^{n+1}_{i} + u^{n+1}_{i-1})
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow u^{n+1}_{i} - 2u^{n}_{i} + u^{n-1}_{i} = \lambda ^2 (u^{n+1}_{i+1} - 2u^{n+1}_{i} + u^{n+1}_{i-1})
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow - 2u^{n}_{i} = \lambda ^2 (u^{n+1}_{i+1} - 2u^{n+1}_{i} + u^{n+1}_{i-1}) - (u^{n+1}_{i} + u^{n-1}_{i})
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow u^{n}_{i} = \frac{-\lambda ^2}{2} (u^{n+1}_{i+1} - 2u^{n+1}_{i} + u^{n+1}_{i-1}) + \frac{1}{2} (u^{n+1}_{i} + u^{n-1}_{i})
+\end{equation*}
+\begin{equation*}
+\Leftrightarrow
+\boxed{
+u^{n}_{i} = \frac{-\lambda ^2}{2}u^{n+1}_{i+1} + (\lambda^2 + \frac{1}{2})u^{n+1}_{i} - \frac{\lambda ^2}{2}u^{n+1}_{i-1} + \frac{1}{2} u^{n-1}_{i}}
+\end{equation*} \\\\
+Ecriture de l'équation sous forme matricielle: \vspace{3 mm}\\
+
+Posons U = 
+\begin{math}
+\begin{pmatrix}
+u_{1}\\
+u_{2}\\
+\vdots \\
+\vdots \\
+u_{N-2}\\
+u_{N-1}
+\end{pmatrix}
+, \hspace{3 mm} A = 
+\begin{pmatrix}
+(\lambda ^2 + \frac{1}{2}) & \frac{-\lambda ^2}{2} & 0 & \cdots & \cdots & 0\\
+\frac{-\lambda ^2}{2} & (\lambda ^2 + \frac{1}{2}) & \frac{-\lambda ^2}{2} & 0 & \cdots & \vdots\\
+0 & \ddots & \ddots & \ddots & \cdots & \vdots\\
+\vdots & \vdots & \ddots & \ddots & \ddots & 0\\
+\vdots & \vdots & 0 &\frac{-\lambda ^2}{2} & (\lambda ^2 + \frac{1}{2}) & \frac{-\lambda ^2}{2} \\
+0 & \cdots & \cdots & 0 & \frac{-\lambda ^2}{2} & (\lambda ^2 + \frac{1}{2})
+\end{pmatrix}
+et \hspace{3 mm} C = 
+\begin{pmatrix}
+u_{g}\\
+0 \\
+\vdots \\
+\vdots \\
+0 \\
+u_{d}
+\end{pmatrix}
+\end{math}\\\\
+alors
+\begin{equation*}
+U^{n}_i = A.U^{n+1}_i - \frac{\lambda^2}{2}.C_i+\frac{1}{2}.U^{n-1}_i
+\end{equation*}
+
+On va donc résoudre cette équation en prenant des conditions initiales cohérentes.\\
+La corde de guitare est fixée à ses extrémités donc les points lorsque $x = 0$ et $x = L$ gardent leur position initiale.\\
+Conditions initiales sur $x$: 
+\begin{equation*}
+\left \{
+\begin{array}{rcl}
+u(0,t) = u_{g} = &0 \hspace*{4 mm} \forall n\\
+u(L,t) = u_{d} = &0 \hspace*{4 mm} \forall n\\
+\end{array}
+\right.
+\end{equation*}
+Donc $C = 0$\\
+Soit
+\begin{equation*}
+\boxed{
+A.U^{n+1} = U^{n} - \frac{1}{2}.U^{n-1}}
+\end{equation*}
+
+D'autre part, la corde admet un momentum initial $\forall x$ à l'instant $t=0$. La position de la corde à $t = 0$ sera définie lors de l'expérimentation car il existe plusieurs modèles de momentum initial qui peuvent faire varier les résultats.\\
+
+De la même manière que pour la méthode explicite, on obtient les conditions initiales :
+\begin{equation*}
+\left \{
+\begin{array}{rcl}
+u^0_i = u(x,0) \hspace*{4 mm} \forall n\\
+u^1_i = \Delta t \frac{\partial u(x,0)}{\partial t} + u(x,0) \hspace*{4 mm} \forall n\\
+\end{array}
+\right.
+\end{equation*}
+
+\section{Runge-Kutta}
+
+Les méthodes de Runge-Kutta sont des schémas numériques à un pas qui permettent de résoudre des équations différentielles ordinaires.
+Elles sont appréciées pour leur précision grâce à des ordres plus élevés: 2 ou 4.\\
+
+Dans le cas de l'équation d'onde, l'utilisation d'une méthode de Runge Kutta n'est pas évidente étant donné qu'il s'agit d'une équation aux dérivées partielles d'ordre 2. Cependant, en utilisant le schéma d'Euler d'ordre 2 et quelques astuces, il est possible de la résoudre avec les méthodes de Runge-Kutta.
+
+\begin{enumerate}
+    \item Discrétisation de l'espace avec un pas $\Delta x$ et approximation de $\frac{\partial^2u^n_{i}}{\partial x^2}$ par la méthode des différences finies.
+    
+    \begin{equation*}
+        \frac{\partial^2u^n_{i}}{\partial x^2}=\frac{u^n_{i-1} - 2u^n_{i} + u^n_{i+1}}{\Delta x^2} 
+    \end{equation*}
+    et donc l'équation d'onde devient:
+    \begin{equation*}
+        \frac{\partial^2u^n_{i}}{\partial^2t}=(\frac{c}{\Delta x})^2(u^n_{i-1} - 2u^n_{i} + u^n_{i+1})
+    \end{equation*}
+    
+    \item Réécrire l'équation sous la forme d'un système d'équations différentielles ordinaires.\\
+    
+    Soit z une fonction de $\mathbb{R}$ telle que\\
+    \[
+      \begin{cases}
+        \frac{\partial u}{\partial t}=z(t) \\
+        \frac{dz}{dt}= c^2 \frac{\partial^2u^n_{i}}{\partial^2 x}
+      \end{cases}
+    \]
+    \newline
+    Soient f et g deux fonctions de $\mathbb{R}$ telles que 
+      \[
+      \begin{cases}
+        g(t,u,z)=z(t) \\
+        f(t,u,z)=c^2 \frac{\partial^2u^n_{i}}{\partial^2 x}=(\frac{c}{\Delta x})^2(u^n_{i-1} - 2u^n_{i} + u^n_{i+1})
+      \end{cases}
+    \]
+    
+    On obtient alors le système d'équations différentielles ordinaires:
+      \[
+      \begin{cases}
+        \frac{\partial u^n_{i}}{\partial t}=g(t,u,z) \\
+        \frac{dz}{dt}=f(t,u,z)
+      \end{cases}
+    \]
+    On peut résoudre ces deux équations par la méthode de Runge Kutta d'ordre 4.\\
+    
+    \item Résolution du système par Runge Kutta d'ordre 4 avec un pas $\Delta t$\\
+    
+    La méthode de Runge Kutta d'ordre 4 nous permet d'obtenir les schémas itératifs suivants:
+     \[
+      \begin{cases}
+        u^{n+1}_{i}= u^n_{i} + \frac{1}{6}((k_0)_{i} +(k_1)_{i} + (k_2)_{i} +(k_3)_{i}) \\
+        z^{n+1}_{i}= z^n_{i} + \frac{1}{6}((l_0)_{i} +(l_1)_{i} + (l_2)_{i} +(l_3)_{i})
+      \end{cases}
+    \]
+    
+    avec :
+    \[
+      \begin{cases}
+        (k_0)_{i}=\Delta t \times g(tn,u^n_{i},z^n_{i})\\
+        (k_1)_{i}=\Delta t \times g(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_0)_{i}}{2},z^n_{i} +\frac{(l_0)_{i}}{2})\\
+        (k_1)_{i}=\Delta t \times g(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_1)_{i}}{2},z^n_{i} +\frac{(l_1)_{i}}{2})\\
+        (k_3)_{i}=\Delta t \times g(tn + \Delta t,u^n_{i} +(k_2)_{i},z^n_{i} +(l_2)_{i})\\
+      \end{cases}
+    \]
+    
+    et 
+    
+     \[
+      \begin{cases}
+        (l_0)_{i}=\Delta t \times f(tn,u^n_{i},z^n_{i})\\
+        (l_1)_{i}=\Delta t \times f(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_0)_{i}}{2},z^n_{i} +\frac{(l_0)_{i}}{2})\\
+        (l_1)_{i}=\Delta t \times f(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_1)_{i}}{2},z^n_{i} +\frac{(l_1)_{i}}{2})\\
+        (l_3)_{i}=\Delta t \times f(tn + \Delta t,u^n_{i} +(k_2)_{i},z^n_{i} +(l_2)_{i}
+      \end{cases}
+    \]\\
+    
+    \item Conditions initiales\\
+    
+Pour les méthodes de Runge-Kutta, les conditions initiales sont également très importantes.
+Dans le cas de l'équation d'onde, il faut que les valeurs de $u^n_{i}$ et de $\frac{\partial u^n_{i}}{\partial t}$ en t=0 soient connues afin de pouvoir calculer le reste des valeurs.\\
+    
+\end{enumerate}
+
+A partir de ces résultats mathématiques, il devient possible de construire un algorithme de calcul pour l'équation d'onde (code complet en python disponible en annexe).
+
+\begin{enumerate}
+    \item Initialisation des pas $\Delta x$ et $\Delta t$\\
+    Initialisation de la durée T et de la distance D
+    
+    \item Calculs des conditions initiales $u^0_{i}$ et de $(\frac{\partial u^n_{i}}{\partial t})^0_{i}$
+    
+    \item Tant que n<T faire:\\
+     Tant que i<D faire:
+        \begin{itemize}
+            \item Calcul de $((k_0)_{i})$
+            \item Calcul de $((l_0)_{i})$
+            \item Calcul de $((k_1){i})$
+            \item Calcul de $((l_1)_{i})$
+            \item ...
+            \item Calculs de $u^{n+1}_{i}$ et $(\frac{\partial u^n_{i}}{\partial t})^n_{i}$
+        \end{itemize}
+    
+\end{enumerate}
+
