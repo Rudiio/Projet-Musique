@@ -6,18 +6,21 @@ import matplotlib.animation as animation
 from pylab import*
 import time as tm
 
+
 ###################################################################################################################
 #caractéristique physique 
-c=340 #m.s^-1   célérité de l'onde
+with open("variables.txt", "r+") as file: #introduction des variables
+  dx = float(file.readline()) #pas entre deux points de l'espace
+  Duree = float(file.readline()) #Durée de la mesure de l'onde
+  c = float(file.readline()) #m.s^-1   célérité de l'onde
+  L = float(file.readline()) #Longueur de la corde en m
+  file.close()
 
 #Paramètres discrétisation de l'espace - maillage spatiale - indice i
-L=0.5  #Longueur de la corde en m
-dx=0.0005 #pas entre deux points de l'espace
 Nx=int(L/dx) #Nombre de points de l'espace
 X=linspace(0,L,Nx)
 
 #Paramètre de discrétisation du temps -maillage temporel - indice n
-Duree=0.001 #Durée de la mesure de l'onde en seconde
 dt=dx/c  #pas dans le temps
 Nt=int(Duree//dt)  #Nombre de points dans l'espace
 T=linspace(0,Duree,Nt)
@@ -158,23 +161,36 @@ ST,SX = meshgrid(T,X)
 p = ax.plot_surface(SX,ST,U,cmap = 'viridis')       
 plt.show()
 
-#Graphique 2D en fonction de la position
-for i in range(0,100,20):
-  plt.plot(X,U[:,[i]])
-
+#Animation graphique 2D en fonction de la position
+fig = plt.figure()
+line, = plot([],[])
+plt.xlim(0, L)
+plt.ylim(-1, 1)
 plt.xlabel("position")
 plt.ylabel("amplitude")
 plt.title("Graphique 2D en fonction de la positon et à t fixé")
 plt.grid("True")
+
+def animate(i):
+  line.set_data(X,U[:,[i]])
+  return line,
+
+ani = animation.FuncAnimation(fig, animate, frames=100, blit=True, interval=20, repeat=False)
 plt.show()
 
-#Graphique 2D en fonction du temps
-for i in range(0,10): 
-  plt.plot(T,U[i,:])
-
+##Animation graphique 2D en fonction du temps
+fig = plt.figure()
+line, = plot([],[])
+plt.xlim(0, 0.001)
+plt.ylim(-1, 1)
 plt.xlabel("Temps")
 plt.ylabel("amplitude")
 plt.title("Graphique 2D en fonction du temp et à x fixé ")
 plt.grid("True")
 
+def animate(i):
+  line.set_data(T,U[i,:])
+  return line,
+
+ani = animation.FuncAnimation(fig, animate, frames=100, blit=True, interval=20, repeat=False)
 plt.show()
