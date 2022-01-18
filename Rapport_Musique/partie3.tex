@@ -4,7 +4,7 @@
 
 On  considère  une  équation  différentielle  ordinaire  (EDO) $u'(t)=f(t,u(t))$. Lorsqu'on ne  connaît pas de solution exacte à cette EDO, on essaye d'en avoir une bonne approximation par  des méthodes numériques.
 
-Cette équation écrit comment varie une fonction, en un point donné (un instant ou un point de l'espace), connaissant la valeur de cette fonction mathématique, le problème à résoudre s'écrit:
+Cette équation décrit comment varie une fonction, en un point donné (un instant ou un point de l'espace), connaissant la valeur de cette fonction mathématique, le problème à résoudre s'écrit:
 
 \begin{equation*}
 \left \{
@@ -16,7 +16,7 @@ u(t=t_0) = u_0 \\
 \end{equation*}
 
 Nous  allons par  exemple  observer  $u$  sur un intervalle de  temps
-régulier de pas h. Nous  allons  essayer  d'obtenir  une suite  d'approximations  $u_n$  de
+régulier de pas $h$. Nous  allons  essayer  d'obtenir  une suite  d'approximations  $u_n$  de
 $u(t_n)$.\\
 
 Considérons le problème monodimensionnel de la vibration d'une corde de guitare. Le schéma de la vibration de guitare vérifie l'équation de d'Alembert :
@@ -31,11 +31,11 @@ La première étape consiste à discrétiser l'espace et le temps en des nombres
 
 On remplace ensuite les dérivées apparaissant dans l'équation par des quotients aux différences obtenus à partir d'un développement de Taylor à un ordre fixé selon la précision recherchée. Il s'agit de la méthode des différences finies qui permet d'approcher les valeurs des dérivées.\\
 
-\section{Euler}
+\section{Méthodes d'Euler}
 
-L'intervalle [0,L] est discrétisé en $Nx+1$ noeuds de coordonnées $x_{i}$ (i variant de 0 à $N$) régulièrement espacés. Notons $\Delta x$ le pas d'espace. L'intervalle de temps [0,Duree] est discrétisé quant à lui en Nt intervalles de pas constant $\Delta t$. Notons $u^{n}_{i}$ l'amplitude de la corde au noeud $x_{i} = i\Delta x$ et à l'instant $t = n\Delta t$\\\\
+L'intervalle [0,L] est discrétisé en $Nx+1$ noeuds de coordonnées $x_{i}$ (i variant de 0 à $N$) régulièrement espacés. Notons $\Delta x$ le pas d'espace. L'intervalle de temps [0,T] est discrétisé quant à lui en Nt intervalles de pas constant $\Delta t$. Notons $u^{n}_{i}$ l'amplitude de la corde au noeud $x_{i} = i\Delta x$ et à l'instant $t = n\Delta t$\\\\
 
-\subsection{Explicite}
+\subsection{Schéma Explicite}
 
 La méthode d'Euler explicite consiste à considérer que, d'un point $t^n_{i}$ au point $t^{n+1}_{i}$, la fonction évolue linéairement, avec une trajectoire qui est celle qu'on peut calculer au point $t_i$.\\
 On peut alors approximer la fonction $(u(t_n,x_i)$ en  calculant $u^{n+1}_{i}$ connaissant $u^n_{i}$.\\
@@ -107,7 +107,7 @@ u_{lN}
 \end{pmatrix}
 \end{math}
 
-\vspace*{7 mm}\\
+\vspace*{7 mm}
 alors\\
 
 \begin{equation*}
@@ -137,7 +137,7 @@ U^{n+1}_i = A.U^{n}_i - U^{n-1}_i}
 On a donc la formule de récurrence cherchée pour approximer la suite $u^n_i$.
 \newline
 \newline
-De plus, nous avons besoin de déterminer $u^1_i$ $\forall i$ pour utiliser notre schéma D'Euler. Ainsi, l'on utiliser les conditions initiales du problème pour obtnenir ces valeurs:
+De plus, nous avons besoin de déterminer $u^1_i$ $\forall i$ pour utiliser notre schéma d'Euler. Ainsi, l'on utilise les conditions initiales du problème pour obtenir ces valeurs:
 \begin{equation*}
 \left \{
 \begin{array}{rcl}
@@ -169,8 +169,10 @@ u^1_i = \Delta t \frac{\partial u(x,0)}{\partial t} + u(x,0) \hspace*{4 mm} \for
 \end{array}
 \right.
 \end{equation*}
+\\
+La description de l'algorithme utilisé est à retrouver en annexe 3.\\ Le code python est accessible via le lien github en annexe 4.
 
-\subsection{Implicite}
+\subsection{Schéma Implicite}
 
 On reprend ici les mêmes notations. La méthode d'Euler implicite consiste à chercher la valeur approchée à l'instant $t_{n+1}$ avec la relation suivante :
 $u^{n+1}_i \approx u^n_i + u'^{n+1}_i\Delta t$\\
@@ -266,8 +268,12 @@ Donc $C = 0$\\
 Soit
 \begin{equation*}
 \boxed{
-A.U^{n+1} = U^{n} - \frac{1}{2}.U^{n-1}}
+A.U^{n+1}_i = U^{n}_i - \frac{1}{2}.U^{n-1}_i\:
+et\:
+U^{n+1}_i = A^{-1}(U^{n}_i - \frac{1}{2}.U^{n-1}_i)}
 \end{equation*}
+
+
 
 D'autre part, la corde admet un momentum initial $\forall x$ à l'instant $t=0$. La position de la corde à $t = 0$ sera définie lors de l'expérimentation car il existe plusieurs modèles de momentum initial qui peuvent faire varier les résultats.\\
 
@@ -280,8 +286,10 @@ u^1_i = \Delta t \frac{\partial u(x,0)}{\partial t} + u(x,0) \hspace*{4 mm} \for
 \end{array}
 \right.
 \end{equation*}
+\\
+La description de l'algorithme utilisé est à retrouver en annexe 3.\\ Le code python est accessible via le lien github en annexe 4.
 
-\section{Runge-Kutta}
+\section{Méthode de Runge-Kutta}
 
 Les méthodes de Runge-Kutta sont des schémas numériques à un pas qui permettent de résoudre des équations différentielles ordinaires.
 Elles sont appréciées pour leur précision grâce à des ordres plus élevés: 2 ou 4.\\
@@ -364,24 +372,5 @@ Dans le cas de l'équation d'onde, il faut que les valeurs de $u^n_{i}$ et de $\
     
 \end{enumerate}
 
-A partir de ces résultats mathématiques, il devient possible de construire un algorithme de calcul pour l'équation d'onde (code complet en python disponible en annexe).
-
-\begin{enumerate}
-    \item Initialisation des pas $\Delta x$ et $\Delta t$\\
-    Initialisation de la durée T et de la distance D
-    
-    \item Calculs des conditions initiales $u^0_{i}$ et de $(\frac{\partial u^n_{i}}{\partial t})^0_{i}$
-    
-    \item Tant que n<T faire:\\
-     Tant que i<D faire:
-        \begin{itemize}
-            \item Calcul de $((k_0)_{i})$
-            \item Calcul de $((l_0)_{i})$
-            \item Calcul de $((k_1){i})$
-            \item Calcul de $((l_1)_{i})$
-            \item ...
-            \item Calculs de $u^{n+1}_{i}$ et $(\frac{\partial u^n_{i}}{\partial t})^n_{i}$
-        \end{itemize}
-    
-\end{enumerate}
-
+La description de l'algorithme utilisé est à retrouver en annexe 3.\\
+Le code python est accessible via le lien github en annexe 4.

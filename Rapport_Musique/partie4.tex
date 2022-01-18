@@ -1,7 +1,7 @@
 \part{Analyse des résultats}
 
 
-\section{Stabilité}
+\section{Etude de la stabilité}
 
 Dans cette partie, nous allons évaluer la stabilité de chaque modèle numérique qui nous permettra d'étudier les conditions de convergence de ces différents modèles expérimentaux à partir des paramètres de discrétisation.
 
@@ -21,8 +21,8 @@ Dans notre problème le CFL est défini de la façon suivante:
 \begin{minipage}{.45\textwidth}%
 \vspace{7mm}
 $c$: célérité de l'onde $x$\\
-$\Delta x$: Pas d'espace\\
-$\Delta t$ : Pas de temps\\
+$\Delta x$: pas d'espace\\
+$\Delta t$ : pas de temps\\
      
 \end{minipage}
 
@@ -41,11 +41,11 @@ Et avec les conditions initiales suivantes:
     \]\\
 
 
-\subsection{Méthode d'Euler}
+\subsection{Méthodes d'Euler}
 
 Pour étudier la stabilité de cette méthode, nous allons faire varier d'abord  $\Delta t$  puis $\Delta x$ pour obtenir les graphiques les plus précis pour chaque schéma explicite et implicite, l'objectif étant de trouver un compromis entre l'efficacité et la précision.
 
-\subsubsection{Euler explicite}
+\subsubsection{Schéma explicite}
 
 $\triangleright$\textbf{Variation de  $\Delta t$(en secondes) à $\Delta x$(en mètres) fixé :}\\
 
@@ -75,6 +75,7 @@ Temps d'exécution =$0,11s$
 \hfill
 \begin{minipage}{.45\textwidth}%
 \includegraphics[width=12cm,height=6cm]{explicited.png}
+
 \end{minipage}%
 
 \begin{minipage}{.5\textwidth}%
@@ -90,8 +91,8 @@ Temps d'exécution = $1,24s$
 \hfill
 \begin{minipage}{.45\textwidth}%
 \includegraphics[width=12cm,height=6cm]{explicitee.png}
-\end{minipage}%
 
+\end{minipage}%
 
 \begin{minipage}{.5\textwidth}%
 
@@ -149,7 +150,7 @@ $\Longrightarrow$ On obtient aucun affichage.\\
 
 \end{enumerate}
 
-
+\vspace*{1cm}
 \hspace*{1cm}$\bullet$ Pour $\Delta t= {10}^{-6}$ \\
 
 \begin{enumerate}[label=\alph*)]
@@ -167,7 +168,6 @@ Temps d'exécution = $0,043s$
 \end{minipage}%
 \hfill
 \begin{minipage}{.6\textwidth}%
-
 \includegraphics[width=12cm,height=6cm]{dt=10^-6 et dx=0.004.png}
 
 \end{minipage}%
@@ -184,6 +184,7 @@ Temps d'exécution = $0,016s$
 \end{minipage}%
 \begin{minipage}{.45\textwidth}%
 \includegraphics[width=12cm,height=6cm]{dt=10^-6 avec dx=0.04.png}
+
 \end{minipage}%
 
 On constate à travers ces différents tests concernant la variation de l'espace à $\Delta t$ fixé, que les représentations se modélisent de mieux en mieux lorsque notre dt décroit.
@@ -192,7 +193,7 @@ On constate à travers ces différents tests concernant la variation de l'espace
 \end{enumerate}
 
 
-\subsubsection{Euler implicite :}
+\subsubsection{Schéma implicite :}
 
 $\triangleright$ \textbf{Variation de $\Delta t$ (en secondes) à $\Delta x$ (en mètres) fixé :}\\
 \begin{enumerate}[label=\alph*)]
@@ -201,7 +202,7 @@ $\triangleright$ \textbf{Variation de $\Delta t$ (en secondes) à $\Delta x$ (en
 \begin{minipage}{.5\textwidth}%
 
 \item $\Delta x =  5*{10}^{-4}m$\\
-$t$ = ${10}^{-2} s $\\
+$\Delta t$ = ${10}^{-2} s $\\
 $\alpha$ =$6,8*{10}^{3}$\\
 
 $\Longrightarrow$ Représentation non supportée donc aucun affichage car $\alpha$ est trop grand.\\ 
@@ -222,7 +223,7 @@ Temps d'exécution = $0,207s$
 \end{minipage}%
 \hfill
 \begin{minipage}{.45\textwidth}%
-\includegraphics[width=12cm,height=6cm]{implicitec.png}
+\includegraphics[width=10cm,height=6cm]{implicitec.png}
 \end{minipage}%
 
 \begin{minipage}{.5\textwidth}%
@@ -235,7 +236,7 @@ Temps d'exécution = $0,302s$
 \end{minipage}%
 \hfill
 \begin{minipage}{.45\textwidth}%
-\includegraphics[width=12cm,height=6cm]{implicited.png}
+\includegraphics[width=10cm,height=6cm]{implicited.png}
 \end{minipage}%
 
 
@@ -251,13 +252,17 @@ $\alpha$=$6,8*{10}^{-3}s$\\
 $\Longrightarrow$On obtient aucune représentation de l'onde car le pas de $\alpha$ est trop petit.\\
 
 \end{minipage}%
-
+\newline
+\newline
 Le coefficient CFL joue un rôle très important dans la stabilité du modéle, ce dernier liant les pas de temps et d'espace nous permet d'avoir des représentations plus ou moins sinusoïdales en fonction de la variation de $\Delta t$.
 \end{enumerate}
 
 $\triangleright$\textbf{Variation de  $\Delta x$ à $\Delta t$ fixé :}\\
 
 \begin{enumerate}[label=\alph*)]
+
+\hspace*{1cm}$\bullet$ Pour $\Delta t= {10}^{-3}$ \\
+\newline
 
 \begin{minipage}{.6\textwidth}%
 
@@ -285,6 +290,9 @@ $\Longrightarrow$ On commence à avoir une forme d'onde sinusoïdale.
 \includegraphics[width=12cm,height=6cm]{dt=0.00001 avec dx=0.03.png}
 \end{minipage}%
 
+
+\hspace*{1cm}$\bullet$ Pour $\Delta t= {10}^{-5}$ \\
+
 \begin{minipage}{.45\textwidth}%
 \item $\Delta x=9*{10}^{-2}m$\\
 $\Delta t={10}^{-5}$\\
@@ -296,6 +304,7 @@ $\Longrightarrow$ L'onde commence à apparaître de maniére imprécise.
 \includegraphics[width=12cm,height=6cm]{dt=0.00001 et dx=0.09.png}
 \end{minipage}%
 
+\hspace*{1cm}$\bullet$ Pour $\Delta t= {10}^{-6}$ \\
 \begin{minipage}{.45\textwidth}%
 
 \item $\Delta x=7*{10}^{-3}m$ \\
@@ -334,24 +343,27 @@ On obtient comme précedemment, une modélisation représentative de la corde lo
 
 \end{enumerate}
 
-\subsection{Runge-Kutta}
+\subsection{Méthode de Runge-Kutta}
 Le principe d'étude de la stabilité du modèle reste le même que pour les schémas d'Euler. Il faut donc faire varier les pas $\Delta x$ et $\Delta t$ de manière à avoir les meilleurs graphiques.
 Mais, il apparaît assez évident que le modèle risque de diverger avec le terme $(\frac{c}{\Delta x})^2$.\\
 
     
 \begin{figure}[H]
 \begin{minipage}[b]{.46\linewidth}
-\centering\epsfig{figure=3_RK.png,width=7cm}
+\centering\epsfig{figure=33.png,width=7cm}
 \caption{
         $\Delta x= 5^{-3}m $\\
-        $\Delta t= 10^{-6}s$
+        $\Delta t= 10^{-4}s$\\
+        $\alpha = 6.8$
     \label{fig1}
     }
 \end{minipage} \hfill
 \begin{minipage}[b]{.46\linewidth}
-\centering\epsfig{figure=4_RK.png,width=7cm}
+\centering\epsfig{figure=11.png,width=7cm}
 \caption{$\Delta x= 5^{-3}m $\\ 
-        $\Delta t= 10^{-6}s$ \label{fig2}}
+        $\Delta t= 10^{-5}s$\\
+        $\alpha = 0.68$
+        \label{fig2}}
 \end{minipage}
 \end{figure}
 
@@ -359,23 +371,27 @@ Mais, il apparaît assez évident que le modèle risque de diverger avec le term
 \begin{minipage}[b]{.46\linewidth}
 \centering\epsfig{figure=6.png,width=7cm}
 \caption{$\Delta x= 5^{-2}m $\\ 
-        $\Delta t= 10^{-7}s$\label{fig1}}
+        $\Delta t= 10^{-6}s$\\
+        $\alpha = 0.0068$
+        \label{fig1}}
 \end{minipage} \hfill
 \begin{minipage}[b]{.46\linewidth}
 \centering\epsfig{figure=8.png,width=\linewidth}
-\caption{$\Delta x= 5^{-2} m $\\ 
-        $\Delta t= \frac{\Delta x}{c}s $ \label{fig2}}
+\caption{$\Delta x= 5^{-3} m $\\ 
+        $\Delta t= \frac{\Delta x}{c}s= 1.47.10^{-5} $\\
+        $\alpha = 1$
+        \label{fig2}}
 \end{minipage}
 \end{figure}
 
 
-A partir des simulations effectuées, est possible d'observer expérimentalement les conditions de stabilité du modèle construit.
+A partir des simulations effectuées (les autres étant en annexe 5), est possible d'observer expérimentalement les conditions de stabilité du modèle construit.
 \begin{enumerate}
     \item Par rapport au CFL : $\alpha = c\frac{\Delta t}{\Delta x}$\\
-    On peut remarquer que le modèle est "correct" uniquement lorsque $\alpha < 1$ (Figure 2).\\
-    Dans les autres cas, le résultat est loin de ce qui attendu.Cela est logique étant donné qu'il s'agit ici d'une méthode à deux pas, dnc le CFL est un paramètre important.
-    \item Par rapport à la valeur de $\Delta t$\\
-    On peut remarquer que la stabilité du modèle augmente lorsque le pas $\Delta t$ diminue.\\
+    On peut remarquer que le modèle est "correct" uniquement lorsque $\alpha < 1 $  (Figure 2).\\
+    Dans les autres cas, le résultat est loin de ce qui attendu. Cela est logique étant donné qu'il s'agit ici d'une méthode à deux pas, donc le CFL est un paramètre important.
+    \item Par rapport aux valeurs  de $\Delta t$ et $\Delta x$ \\
+    On peut remarquer que la stabilité du modèle augmente lorsque le pas $\Delta t$ diminue, il faut que $\Delta t$ soit plus petit que $\Delta x$ et que $\Delta x$ soit assez petit mais pas trop par rapport à $\Delta t$.\\
     Cela découlerait de l'utisation de la méthode de Runge-Kutta pour la résolution de l'équation.
     
 \end{enumerate}
@@ -387,7 +403,6 @@ Pour cela, nous allons dans un premier temps comparer expérimentalement les err
 Dans un second temps, nous pouvons également comparer les modèles en terme de performance, en considérant la durée d'exécution.
 
 \subsection{Etude des erreurs}
-\newline
 Pour effectuer les calculs d'erreurs, nous avons choisi la fonction suivante :
 \begin{equation*}
     u_{exact}(x,t)=cos(\frac{3 \pi c}{L}t)sin(\frac{3 \pi }{L}x )
@@ -413,7 +428,6 @@ Et les paramètres de discrétisation pour les méthodes d'Euler sont:
     \item $\Delta x=0.0005$
     \item $\Delta t=\frac{\Delta x}{c}$
 \end{itemize}
-\newline
 Ceux de la méthode de Runge-Kutta sont: 
 \begin{itemize}
     \item $\Delta x=0.005$
@@ -472,6 +486,7 @@ Le modèle le moins précis est le modèle de Runge-Kutta.
 \newline
 L'ordre des erreurs est de $10^-2$ pour les modèles mais le modèle de Runge-Kutta a une erreur qui croît beaucoup plus vite.
 
+\vspace{1cm}
 \subsection{Ordre des erreurs}
 Pour finir la comparaison des modèles, nous pouvons déterminer et comparer l'ordre de leurs erreurs.
 Pour cela, nous pouvons étudier les expressions suivantes:
@@ -505,6 +520,8 @@ A partir de ces résultats, on peut déduire les ordres des erreurs:
 
 Au final, on peut déduire que, dans notre cas, la méthode d'Euler explicite est la plus intéréssante puisqu'elle produit l'erreur la plus petite mais est également efficace en terme d'algorithme contrairement à la méthode de Runge-Kutta qui demande beaucoup plus de calculs pour avoir un résultat cohérent.
 
+
+
 \section{Conditions initiales}
 
 \subsection{Variation des conditions initiales}
@@ -523,7 +540,7 @@ On peut établir 2 modèles mathématiques différents pour la corde pincée du 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{image2.png}
+\includegraphics[scale=1]{image2.png}
 \caption{Schéma d'une corde pincée}
 \label{fig1}
 \end{figure}
@@ -542,14 +559,13 @@ On peut établir 2 modèles mathématiques différents pour la corde pincée du 
     \end{equation}
     
     
-    
-    \item Modèle complète (harpe)
+    \item Modèle complet (harpe)
     \begin{equation}
         u(x,t=0)=A\frac{x}{x_{0}}\frac{L-x}{L}
     \end{equation}
     
-    
-Dans un deuxième temps, nous allons étudier un troisième modèle où la corde n'est pas accrochée aux bords, c'est-à-dire que, $u(t=0,x=0)$ on a une amplitude $A$ différente de $0$. Le résultat ne devrait alors pas être correct étant donné qu'il ne respecte plus les conditions du problèmes.
+Dans un deuxième temps, nous allons étudier un troisième modèle où la corde n'est pas accrochée aux bords, c'est-à-dire que, $u(t=0,x=0)$ on a une amplitude $A$ différente de $0$. Le résultat ne devrait alors pas être correct étant donné qu'il ne respecte plus les conditions du problème.
+\newline
 
  \item Modèle "pas accroché aux bords"
     \begin{equation}
@@ -569,8 +585,9 @@ Dans un deuxième temps, nous allons étudier un troisième modèle où la corde
 \end{enumerate}
 
 
-    
+\vspace*{2cm}
 \subsection{Implémentation des variations des conditions initiales dans les modéles}
+
 
 \subsubsection{Méthodes d'Euler}
 
@@ -580,15 +597,15 @@ Dans un deuxième temps, nous allons étudier un troisième modèle où la corde
 
 \begin{figure}[H]
 \minipage{0.32\textwidth}
-  \includegraphics[width=4cm]{1.png}
+  \includegraphics[width=5cm]{1.png}
   \caption{Modèle (1)}\label{fig}
 \endminipage\hfill
 \minipage{0.32\textwidth}
-  \includegraphics[width=4cm]{2.png}
+  \includegraphics[width=5cm]{2.png}
   \caption{Modèle (2)}\label{fig}
 \endminipage\hfill
 \minipage{0.32\textwidth}%
-  \includegraphics[width=4cm]{7_explicite.png}
+  \includegraphics[width=5cm]{7_explicite.png}
   \caption{Modèle (3)}\label{fig}
 \endminipage
 \end{figure}
@@ -599,15 +616,15 @@ Dans un deuxième temps, nous allons étudier un troisième modèle où la corde
 
 \begin{figure}[H]
 \minipage{0.32\textwidth}
-  \includegraphics[width=4cm]{3.png}
+  \includegraphics[width=5cm]{3.png}
   \caption{Modèle (1)}\label{fig}
 \endminipage\hfill
 \minipage{0.32\textwidth}
-  \includegraphics[width=4cm]{4.png}
+  \includegraphics[width=5cm]{4.png}
   \caption{Modèle (2)}\label{fig}
 \endminipage\hfill
 \minipage{0.32\textwidth}%
-  \includegraphics[width=4cm]{8_implicite.png}
+  \includegraphics[width=5cm]{8_implicite.png}
   \caption{Modèle (3)}\label{fig}
 \endminipage
 \end{figure}
@@ -617,15 +634,15 @@ Dans un deuxième temps, nous allons étudier un troisième modèle où la corde
    
 \begin{figure}[H]
 \minipage{0.32\textwidth}
-  \includegraphics[width=4cm]{5.png}
+  \includegraphics[width=5cm]{5.png}
   \caption{Modèle (1)}\label{fig}
 \endminipage\hfill
 \minipage{0.32\textwidth}
-  \includegraphics[width=4cm]{6_pro.png}
+  \includegraphics[width=5cm]{6_pro.png}
   \caption{Modèle (2)}\label{fig}
 \endminipage\hfill
 \minipage{0.32\textwidth}%
-  \includegraphics[width=4cm]{9_RK.png}
+  \includegraphics[width=5cm]{9_RK.png}
   \caption{Modèle (3)}\label{fig}
 \endminipage
 \end{figure}
