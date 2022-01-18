@@ -190,7 +190,7 @@ def animate(i):
   line.set_data(X,U[:,[i]])
   return line,
 
-ani = animation.FuncAnimation(fig, animate, frames=100, blit=True, interval=20, repeat=False)
+ani = animation.FuncAnimation(fig, animate, frames=Nt, blit=True, interval=10, repeat=False)
 plt.show()
 
 ##Animation graphique 2D en fonction du temps
@@ -207,5 +207,5 @@ def animate(i):
   line.set_data(T,U[i,:])
   return line,
 
-ani = animation.FuncAnimation(fig, animate, frames=100, blit=True, interval=20, repeat=False)
+ani = animation.FuncAnimation(fig, animate, frames=Nt, blit=True, interval=20, repeat=False)
 plt.show()
