@@ -7,13 +7,14 @@ import tkinter.messagebox
 from PIL import Image
 from PIL import ImageTk
 
+
 def explicite():
     dx = dx_entry.get()
     dt = dt_entry.get()
     c = c_entry.get()
     L = L_entry.get()
     Duree = Duree_entry.get()
-    CI = CI_entry.get()
+    CI = variable.get()
     with open("variables.txt", "w+") as file:
         file.write(dx + "\n")
         file.write(dt + "\n")
@@ -29,7 +30,7 @@ def implicite():
     c = c_entry.get()
     L = L_entry.get()
     Duree = Duree_entry.get()
-    CI = CI_entry.get()
+    CI = variable.get()
     with open("variables.txt", "w+") as file:
         file.write(dx + "\n")
         file.write(dt + "\n")
@@ -45,7 +46,7 @@ def rk():
     c = c_entry.get()
     L = L_entry.get()
     Duree = Duree_entry.get()
-    CI = CI_entry.get()
+    CI = variable.get()
     with open("variables.txt", "w+") as file:
         file.write(dx + "\n")
         file.write(dt + "\n")
@@ -63,6 +64,7 @@ window.config(background='black')
 
 #creer la frame
 frame = Frame(window, bg ='black')
+
 
 #Titre
 label_title = Label(frame, text = "Variations des conditions", font=("Arial", 18), bg='black', fg='white')
@@ -99,10 +101,22 @@ Duree_entry = Entry(frame, text = "Duree", font=("Arial", 12), bg='white', fg='b
 Duree_entry.pack()
 
 #CI à faire varier
-CI_label = Label(frame, text = "Conditions Initiales", font=("Arial", 12), bg='black', fg='white')
-CI_label.pack()
-CI_entry = Entry(frame, text = "Initiales", font=("Arial", 12), bg='white', fg='black')
-CI_entry.pack()
+OptionList = [
+"Sinus",
+"Pincee",
+"Harpe",
+] 
+
+variable = StringVar(frame)
+variable.set(OptionList[0]) # default value
+
+w = OptionMenu(frame, variable, *OptionList)
+w.pack()
+
+def CI():
+    variable.get()
+
+
 
 #button
 bouton1 = Button(frame, text='explicite', font=("Arial",12), command = explicite)
@@ -111,6 +125,7 @@ bouton3 = Button(frame, text='RK', font=("Arial",12), command = rk)
 bouton1.pack()
 bouton2.pack()
 bouton3.pack()
+
 
 frame.pack(expand=YES)
 

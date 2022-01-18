@@ -183,7 +183,7 @@ plt.xlim(0, L)
 plt.ylim(-1, 1)
 plt.xlabel("position")
 plt.ylabel("amplitude")
-plt.title("Graphique 2D en fonction de la positon et à t fixé")
+plt.title("Graphique 2D en fonction de la positon et a t fixe")
 plt.grid("True")
 
 def animate(i):
@@ -200,7 +200,7 @@ plt.xlim(0, 0.001)
 plt.ylim(-1, 1)
 plt.xlabel("Temps")
 plt.ylabel("amplitude")
-plt.title("Graphique 2D en fonction du temp et à x fixé ")
+plt.title("Graphique 2D en fonction du temp et a x fixe ")
 plt.grid("True")
 
 def animate(i):

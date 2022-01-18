@@ -262,14 +262,14 @@ plt.xlim(0, L)
 plt.ylim(-1, 1)
 plt.xlabel("position")
 plt.ylabel("amplitude")
-plt.title("Graphique 2D en fonction de la positon et à t fixé")
+plt.title("Graphique 2D en fonction de la positon et a t fixe")
 plt.grid("True")
 
 def animate(i):
   line.set_data(X,U[:,[i]])
   return line,
 
-ani = animation.FuncAnimation(fig, animate, frames=Nt, blit=True, interval=10, repeat=False)
+ani = animation.FuncAnimation(fig, animate, frames=Nt, blit=True, interval=5, repeat=False)
 plt.show()
 
 ##Animation graphique 2D en fonction du temps
@@ -279,7 +279,7 @@ plt.xlim(0, 0.001)
 plt.ylim(-1, 1)
 plt.xlabel("Temps")
 plt.ylabel("amplitude")
-plt.title("Graphique 2D en fonction du temp et à x fixé ")
+plt.title("Graphique 2D en fonction du temp et a x fixe ")
 plt.grid("True")
 
 def animate(i):
