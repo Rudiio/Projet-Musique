@@ -64,6 +64,7 @@ window.config(background='black')
 
 #creer la frame
 frame = Frame(window, bg ='black')
+frame2 = Frame(window, bg = 'black')
 
 
 #Titre
@@ -71,33 +72,38 @@ label_title = Label(frame, text = "Variations des conditions", font=("Arial", 18
 label_title.pack()
 
 #dx à faire varier
-dx_label = Label(frame, text = "dx", font=("Arial", 12), bg='black', fg='white')
+dx_label = Label(frame, text = "Δx", font=("Arial", 12), bg='black', fg='white')
 dx_label.pack()
-dx_entry = Entry(frame, text = "dx", font=("Arial", 12), bg='white', fg='black')
+dx_entry = Entry(frame, text = "Δx", font=("Arial", 12), bg='white', fg='black')
+dx_entry.insert(END, '0.004')
 dx_entry.pack()
 
 #dt à faire varier
-dt_label = Label(frame, text = "dt", font=("Arial", 12), bg='black', fg='white')
+dt_label = Label(frame, text = "Δt", font=("Arial", 12), bg='black', fg='white')
 dt_label.pack()
-dt_entry = Entry(frame, text = "dt", font=("Arial", 12), bg='white', fg='black')
+dt_entry = Entry(frame, text = "Δt", font=("Arial", 12), bg='white', fg='black')
+dt_entry.insert(END, '0.0000075')
 dt_entry.pack()
 
 #c à faire varier
 c_label = Label(frame, text = "c", font=("Arial", 12), bg='black', fg='white')
 c_label.pack()
 c_entry = Entry(frame, text = "c", font=("Arial", 12), bg='white', fg='black')
+c_entry.insert(END, '340')
 c_entry.pack()
 
 #L à faire varier
 L_label = Label(frame, text = "L", font=("Arial", 12), bg='black', fg='white')
 L_label.pack()
 L_entry = Entry(frame, text = "L", font=("Arial", 12), bg='white', fg='black')
+L_entry.insert(END, '0.5')
 L_entry.pack()
 
 #Duree à faire varier
 Duree_label = Label(frame, text = "Duree", font=("Arial", 12), bg='black', fg='white')
 Duree_label.pack()
 Duree_entry = Entry(frame, text = "Duree", font=("Arial", 12), bg='white', fg='black')
+Duree_entry.insert(END, '0.005')
 Duree_entry.pack()
 
 #CI à faire varier
@@ -116,17 +122,16 @@ w.pack()
 def CI():
     variable.get()
 
-
-
 #button
-bouton1 = Button(frame, text='explicite', font=("Arial",12), command = explicite)
-bouton2 = Button(frame, text='implicite', font=("Arial",12), command = implicite)
-bouton3 = Button(frame, text='RK', font=("Arial",12), command = rk)
-bouton1.pack()
-bouton2.pack()
-bouton3.pack()
+bouton1 = Button(frame2, text='Explicite', font=("Arial",12), command = explicite)
+bouton2 = Button(frame2, text='Implicite', font=("Arial",12), command = implicite)
+bouton3 = Button(frame2, text='RK', font=("Arial",12), command = rk)
+bouton1.grid(row=0,column=0, sticky=W)
+bouton2.grid(row=0,column=1, sticky=W)
+bouton3.grid(row=0,column=3, sticky=W)
 
 
 frame.pack(expand=YES)
+frame2.pack(expand=YES)
 
 window.mainloop()

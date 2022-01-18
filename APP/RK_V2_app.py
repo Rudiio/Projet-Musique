@@ -259,7 +259,10 @@ plt.show()
 fig = plt.figure()
 line, = plot([],[])
 plt.xlim(0, L)
-plt.ylim(-1, 1)
+if(CI=="Pincee"):
+  plt.ylim(-2,2)
+else:
+  plt.ylim(-1, 1)
 plt.xlabel("position")
 plt.ylabel("amplitude")
 plt.title("Graphique 2D en fonction de la positon et a t fixe")
@@ -276,7 +279,10 @@ plt.show()
 fig = plt.figure()
 line, = plot([],[])
 plt.xlim(0, 0.001)
-plt.ylim(-1, 1)
+if(CI=="Pincee"):
+  plt.ylim(-2,2)
+else:
+  plt.ylim(-1, 1)
 plt.xlabel("Temps")
 plt.ylabel("amplitude")
 plt.title("Graphique 2D en fonction du temp et a x fixe ")
@@ -286,7 +292,7 @@ def animate(i):
   line.set_data(T,U[i,:])
   return line,
 
-ani = animation.FuncAnimation(fig, animate, frames=Nt, blit=True, interval=20, repeat=False)
+ani = animation.FuncAnimation(fig, animate, frames=Nx, blit=True, interval=20, repeat=False)
 plt.show()
 
 
