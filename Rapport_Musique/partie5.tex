@@ -4,9 +4,9 @@
 Au cours de ce projet, nous voulions réaliser des modèles propagation des ondes dans un instrument à corde afin de les comparer. Nous avons pu établir 3 modèles différents pour résoudre numériquement l'équation d'onde. Ces modèles mathématiques permettent d'obtenir des solutions numériques relativement proche de la solution exacte.
 Nous pouvons résumer les points importants de chaque méthode:
 \begin{itemize}
-    \item Euler explicite : efficacité de calcul avec une formule de récurrence,utilisation de la vectorialisation (numpy) et précision à $10^-2$
-    \item Euler implicite : efficacité de calcul avec résolution de système,utilisation de vectorialisation (numpy) et précision à $10^-2$
-    \item Runge-Kutta : méthode non efficace à cause des coefficients de Runge-Kutta et l'absence de vectorialisation (numpy), précision à $10^-1$ . La méthode n'est pas intéréssante pour de la résolution d'équation aux dérivées partielles.
+    \item Euler explicite : efficacité de calcul avec une formule de récurrence,utilisation de la vectorialisation (Numpy) et précision à $10^-2$
+    \item Euler implicite : efficacité de calcul avec résolution de système,utilisation de vectorialisation (Numpy) et précision à $10^-2$
+    \item Runge-Kutta : méthode non efficace à cause des coefficients de Runge-Kutta et l'absence de vectorialisation (Numpy), précision à $10^-1$ . La méthode n'est pas intéressante pour de la résolution d'équation aux dérivées partielles.
 \end{itemize}
 Donc,l'étude des modèles nous permet de conclure que la méthode la plus efficace pour résoudre l'équation d'onde est la méthode d'Euler explicite pour sa minimisation des erreurs et du temps de calculs.
 \section{Compétences acquises}

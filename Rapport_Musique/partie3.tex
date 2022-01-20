@@ -19,7 +19,7 @@ Nous  allons par  exemple  observer  $u$  sur un intervalle de  temps
 régulier de pas $h$. Nous  allons  essayer  d'obtenir  une suite  d'approximations  $u_n$  de
 $u(t_n)$.\\
 
-Considérons le problème monodimensionnel de la vibration d'une corde de guitare. Le schéma de la vibration de guitare vérifie l'équation de D'Alembert :
+Considérons le problème mono-dimensionnel de la vibration d'une corde de guitare. Le schéma de la vibration de guitare vérifie l'équation de D'Alembert :
 \begin{equation*}
 \frac{\partial^2u}{\partial t^2} = c^{2}\frac{\partial^2u}{\partial x^2}
 \end{equation*}
@@ -33,7 +33,7 @@ On remplace ensuite les dérivées apparaissant dans l'équation par des quotien
 
 \section{Méthodes d'Euler}
 
-L'intervalle $[0,L]$ est discrétisé en $Nx+1$ noeuds de coordonnées $x_{i}$ ($i$ variant de $0$ à $N$) régulièrement espacés. Notons $\Delta x$ le pas d'espace. L'intervalle de temps $[0,T]$ est discrétisé quant à lui en Nt intervalles de pas constant $\Delta t$. Notons $u^{n}_{i}$ l'amplitude de la corde au noeud $x_{i} = i\Delta x$ et à l'instant $t = n\Delta t$.\\\\
+L'intervalle $[0,L]$ est discrétisé en $Nx+1$ noeuds de coordonnées $x_{i}$ ($i$ variant de $0$ à $N$) régulièrement espacés. Notons $\Delta x$ le pas d'espace. L'intervalle de temps $[0,T]$ est discrétisé quant à lui en $Nt$ intervalles de pas constant $\Delta t$. Notons $u^{n}_{i}$ l'amplitude de la corde au noeud $x_{i} = i\Delta x$ et à l'instant $t_{n} = n\Delta t$.\\\\
 
 \subsection{Schéma Explicite}
 
@@ -41,14 +41,14 @@ La méthode d'Euler explicite consiste à considérer que, d'un point $t^n_{i}$ 
 On peut alors approximer la fonction $(u(t_n,x_i)$ en  calculant $u^{n+1}_{i}$ connaissant $u^n_{i}$.\\
 
 
-Le problème se résoud donc de la façon suivante:\\
-$\rightarrow$ on connaît la fonction f, un point tn où on connaît $u^n_{i}$\\
+Le problème se résout donc de la façon suivante:\\
+$\rightarrow$ on connaît la fonction $f$, un point $t_n$ où on connaît $u^n_{i}$\\
 $\rightarrow$ on peut donc calculer $u'(t)=f(t,u(t))$ \\
 $\rightarrow$ on estime alors la valeur de u au point $t_{n+1} = t_n + \Delta t$ : $u_{n+1} \approx u_n + u'_n\Delta t$\\
 $\rightarrow$ on peut alors itérer (résoudre pas à pas) pour passer au point suivant. Le problème est initialisé en partant de $t_0$ où on connaît $u_0$ (condition à la limite).\\
 
 
-On obtient à partir de le méthode des différences finies les schémas centré d'ordre 2 pour les dérivées spatiale et temporelle : 
+On obtient à partir de la méthode des différences finies les schémas centré d'ordre 2 pour les dérivées spatiale et temporelle : 
 \begin{equation*}
 (\frac{\partial^2u}{\partial t^2})^{n}_{i} = \frac{u^{n+1}_{i} - 2u^{n}_{i} + u^{n-1}_{i}}{\Delta t^2}
 \end{equation*}
@@ -114,7 +114,7 @@ alors\\
 U^{n+1}_i = A.U^{n}_i - U^{n-1}_i + C_i\\
 \end{equation*}
 
-On va donc résoudre cette équation en prenant des conditions initiales cohérentes. La corde de guitare est fixée à ses extrémités et admet un momentum initial lorsque t=0 (que l'on définira lors des expérimentations).
+On va donc résoudre cette équation en prenant des conditions initiales cohérentes. La corde de guitare est fixée à ses extrémités et admet un momentum initial lorsque $t=0$ (que l'on définira lors des expérimentations).
 
 Conditions initiales: 
 \begin{equation*}
@@ -170,7 +170,7 @@ u^1_i = \Delta t \frac{\partial u(x,0)}{\partial t} + u(x,0) \hspace*{4 mm} \for
 \right.
 \end{equation*}
 \\
-La description de l'algorithme utilisé est à retrouver en annexe 3.\\ Le code python est accessible via le lien github en annexe 4.
+La description de l'algorithme utilisé est à retrouver en annexe 3.\\ Le code python est accessible via le lien Github en annexe 4.
 
 \subsection{Schéma Implicite}
 
@@ -217,7 +217,7 @@ Alors d'après l'équation de discrétisation:
 \boxed{
 u^{n}_{i} = \frac{-\lambda ^2}{2}u^{n+1}_{i+1} + (\lambda^2 + \frac{1}{2})u^{n+1}_{i} - \frac{\lambda ^2}{2}u^{n+1}_{i-1} + \frac{1}{2} u^{n-1}_{i}}
 \end{equation*} \\\\
-Ecriture de l'équation sous forme matricielle: \vspace{3 mm}\\
+Écriture de l'équation sous forme matricielle: \vspace{3 mm}\\
 
 Posons U = 
 \begin{math}
@@ -287,7 +287,7 @@ u^1_i = \Delta t \frac{\partial u(x,0)}{\partial t} + u(x,0) \hspace*{4 mm} \for
 \right.
 \end{equation*}
 \\
-La description de l'algorithme utilisé est à retrouver en annexe 3.\\ Le code python est accessible via le lien github en annexe 4.
+La description de l'algorithme utilisé est à retrouver en annexe 3.\\ Le code python est accessible via le lien Github en annexe 4.
 
 \section{Méthode de Runge-Kutta}
 
@@ -333,11 +333,11 @@ Nous introduisons la même discrétisation de temps et d'espace que pour les mé
         \frac{dz}{dt}=f(t,u,z)
       \end{cases}
     \]
-    On peut résoudre ces deux équations par la méthode de Runge Kutta d'ordre 4.\\
+    On peut résoudre ces deux équations par la méthode de Runge-Kutta d'ordre 4.\\
     
-    \item Résolution du système par Runge Kutta d'ordre 4 avec un pas $\Delta t$\\
+    \item Résolution du système par Runge-Kutta d'ordre 4 avec un pas $\Delta t$\\
     
-    La méthode de Runge Kutta d'ordre 4 nous permet d'obtenir les schémas itératifs suivants:
+    La méthode de Runge-Kutta d'ordre 4 nous permet d'obtenir les schémas itératifs suivants:
      \[
       \begin{cases}
         u^{n+1}_{i}= u^n_{i} + \frac{1}{6}((k_0)_{i} +(k_1)_{i} + (k_2)_{i} +(k_3)_{i}) \\
@@ -369,8 +369,8 @@ Nous introduisons la même discrétisation de temps et d'espace que pour les mé
     \item Conditions initiales\\
     
 Pour les méthodes de Runge-Kutta, les conditions initiales sont également très importantes.
-Dans le cas de l'équation d'onde, il faut que les valeurs de $u^n_{i}$ et de $\frac{\partial u^n_{i}}{\partial t}$ en t=0 soient connues afin de pouvoir calculer le reste des valeurs.\\
+Dans le cas de l'équation d'onde, il faut que les valeurs de $u^n_{i}$ et de $\frac{\partial u^n_{i}}{\partial t}$ en $t=0$ soient connues afin de pouvoir calculer le reste des valeurs.\\
     
 \end{enumerate}
 La description de l'algorithme utilisé est à retrouver en annexe 3.\\
-Le code python est accessible via le lien github en annexe 4.
+Le code python est accessible via le lien Github en annexe 4.

@@ -1,12 +1,12 @@
 \part{Analyse des résultats}
 
 
-\section{Etude de la stabilité}
+\section{Étude de la stabilité}
 
 Dans cette partie, nous allons évaluer la stabilité de chaque modèle numérique qui nous permettra d'étudier les conditions de convergence de ces différents modèles expérimentaux à partir des paramètres de discrétisation.
 
 
-En effet, la stabilité dépend du Courant- Friechichs-Lewy (CFL), condition suffisante de la stabilité liant les pas d'espace $\Delta x $ et de temps $\Delta t$ . Le CFL est une condition de convergence pour résoudre certaines équations aux dérivées partielles.\\
+En effet, la stabilité dépend du Courant-Friechich-Levy (CFL), condition suffisante de la stabilité liant les pas d'espace $\Delta x $ et de temps $\Delta t$ . Le CFL est une condition de convergence pour résoudre certaines équations aux dérivées partielles.\\
 
 Dans notre problème le CFL est défini de la façon suivante:
 
@@ -28,7 +28,7 @@ $\Delta t$ : pas de temps\\
 
 Les tests ont été effectués avec des valeurs de référence:
 \begin{itemize}
-    \item c=340 m/s (vitesse arbitraire mais qui correspond à la vitese d'une onde dans l'air)
+    \item c=340 m/s (vitesse arbitraire mais qui correspond à la vitesse d'une onde dans l'air)
     \item L=0.5 m (longueur moyenne d'une corde de guitare)
     \item Durée=0.001 s\\ 
 \end{itemize}
@@ -84,7 +84,7 @@ Temps d'exécution =$0,11s$
 $\Delta t$=${10}^{-6} s $ \\
 $\lambda$=$6,8*{10}^{-1}s$\\
 
-$\Longrightarrow$ On obtient une courbe parfaitement sinusoidale.\\
+$\Longrightarrow$ On obtient une courbe parfaitement sinusoïdale.\\
 Temps d'exécution = $1,24s$
 
 \end{minipage}%
@@ -102,7 +102,7 @@ $\Delta t={10}^{-8}$\\
 $\lambda$=$6,8*{10}^{-3}s$\\
 
 
-$\Longrightarrow$ On obtient une courbe parfaitement sinusoidale.\\
+$\Longrightarrow$ On obtient une courbe parfaitement sinusoïdale.\\
 Temps d'exécution =$122s$
 \end{minipage}%
 \hfill
@@ -113,7 +113,7 @@ Temps d'exécution =$122s$
 
 
 \end{enumerate}
-D'aprés ces différents tests, on peut remarquer que le schéma est de plus en plus sinusoïdale lorsque le CFL se rapproche de 1.\\
+D'après ces différents tests, on peut remarquer que le schéma est de plus en plus sinusoïdale lorsque le CFL se rapproche de 1.\\
 
 
 
@@ -162,7 +162,7 @@ $\Delta t= {10}^{-6}$ \\
 $\lambda= 0,85$\\
 
 
-$\Longrightarrow$ On obtient la representation d'une onde parfaitement sinusoïdale.\\
+$\Longrightarrow$ On obtient la représentation d'une onde parfaitement sinusoïdale.\\
 Temps d'exécution = $0,043s$
 
 \end{minipage}%
@@ -187,7 +187,7 @@ Temps d'exécution = $0,016s$
 
 \end{minipage}%
 
-On constate à travers ces différents tests concernant la variation de l'espace à $\Delta t$ fixé, que les représentations se modélisent de mieux en mieux lorsque notre dt décroit.
+On constate à travers ces différents tests concernant la variation de l'espace à $\Delta t$ fixé, que les représentations se modélisent de mieux en mieux lorsque notre $\Delta t$ décroît.
 
 
 \end{enumerate}
@@ -254,7 +254,7 @@ $\Longrightarrow$On obtient aucune représentation de l'onde car le pas de $\lam
 \end{minipage}%
 \newline
 \newline
-Le coefficient CFL joue un rôle très important dans la stabilité du modéle, ce dernier liant les pas de temps et d'espace nous permet d'avoir des représentations plus ou moins sinusoïdales en fonction de la variation de $\Delta t$.
+Le coefficient CFL joue un rôle très important dans la stabilité du modèle, ce dernier liant les pas de temps et d'espace nous permet d'avoir des représentations plus ou moins sinusoïdales en fonction de la variation de $\Delta t$.
 \end{enumerate}
 
 $\triangleright$\textbf{Variation de  $\Delta x$ à $\Delta t$ fixé :}\\
@@ -335,10 +335,10 @@ $\Longrightarrow$ On a une représentation sinusoïdale.
 
 \includegraphics[width=12cm,height=6cm]{dt=10^-6 avec dx=0.024.png}
 \end{minipage}
-On obtient comme précedemment, une modélisation représentative de l'onde lorsque le pas de temps diminue mais également en ayant un pas d'espace d'ordre ${10}^{-2}$\\
+On obtient comme précédemment, une modélisation représentative de l'onde lorsque le pas de temps diminue mais également en ayant un pas d'espace d'ordre ${10}^{-2}$\\
 
 
-\textbf{Conclusion}: On peut remarquer d'aprés cette série de tests, que la stabilité est obtenu généralment avec un coefficient CFL proche de 1 par conséquent un pas d'espace $\Delta x$ de l'ordre ${10}^{-2}$ au minimum et un pas de temps de l'ordre ${10}^{-5}$ au minimum.   
+\textbf{Conclusion}: On peut remarquer d'après cette série de tests, que la stabilité est obtenu généralement avec un coefficient CFL proche de 1 par conséquent un pas d'espace $\Delta x$ de l'ordre ${10}^{-2}$ au minimum et un pas de temps de l'ordre ${10}^{-5}$ au minimum.   
 
 
 \end{enumerate}
@@ -392,7 +392,7 @@ A partir des simulations effectuées (les autres étant en annexe 5), est possib
     Dans les autres cas, le résultat est loin de ce qui attendu. Cela est logique étant donné qu'il s'agit ici d'une méthode à deux pas, donc le CFL est un paramètre important.
     \item Par rapport aux valeurs  de $\Delta t$ et $\Delta x$ \\
     On peut logiquement remarquer que la stabilité du modèle augmente lorsque le pas $\Delta t$ diminue, il faut que $\Delta t$ soit plus petit que $\Delta x$ et que $\Delta x$ soit assez petit mais trop le diminuer ferait diverger le modèle.\\
-    Cela découlerait du facteur $(\frac{c}{\Delta x})^2$ qui augemente énormément lorsque $\Delta x$ diminue.
+    Cela découlerait du facteur $(\frac{c}{\Delta x})^2$ qui augmente énormément lorsque $\Delta x$ diminue.
     
 \end{enumerate}
 
@@ -401,7 +401,7 @@ A partir des simulations effectuées (les autres étant en annexe 5), est possib
 L'objectif principal du projet est de comparer les différentes méthodes de résolution numérique pour l'équation d'onde appliquée à une corde de guitare.
 Pour cela, nous allons comparer expérimentalement les erreurs obtenues pour chaque modèle pour des conditions de stabilité optimales et pour une solution exacte donnée.
 
-\subsection{Etude des erreurs}
+\subsection{Étude des erreurs}
 Pour effectuer les calculs d'erreurs, nous avons choisi la fonction suivante :
 \begin{equation*}
     u_{exact}(x,t)=cos(\frac{3 \pi c}{L}t)sin(\frac{3 \pi }{L}x )
@@ -418,9 +418,9 @@ Ainsi, on obtient comme conditions initiales pour les trois modèles:
     \]\\
 Et les paramètres des modèles sont les suivants:
 \begin{itemize}
-    \item c=340 m/s (vitesse arbitraire mais qui correspond à la vitese d'une onde dans l'air)
-    \item L=0.5 m (longueur moyenne d'une corde de guitare)
-    \item Durée=0.001 s\\ 
+    \item $c$=340 m/s (vitesse arbitraire mais qui correspond à la vitesse d'une onde dans l'air)
+    \item $L$=0.5 m (longueur moyenne d'une corde de guitare)
+    \item $Durée$=0.001 s\\ 
 \end{itemize}
 Et les paramètres de discrétisation pour les méthodes d'Euler sont:
 \begin{itemize}
@@ -488,8 +488,8 @@ L'ordre des erreurs est de $10^-2$ pour les modèles mais le modèle de Runge-Ku
 Pour finir la comparaison des modèles, nous pouvons déterminer et comparer l'ordre de leurs erreurs.
 Pour cela, nous pouvons étudier les expressions suivantes:
 \begin{enumerate}
-    \item $max|e^n_{i}|$ pour 0<i<Nx et 0<n<Nt en faisant varier le nombre de point de temps Nt (Figure 9)
-    \item $max|e^n_{i}|$ pour 0<i<Nx et 0<n<Nt en faisant varier le nombre de point d'espace Nx (Figure 10)
+    \item $max|e^n_{i}|$ pour $0<i<Nx$ et $0<n<Nt$ en faisant varier le nombre de point de temps $Nt$ (Figure 9)
+    \item $max|e^n_{i}|$ pour $0<i<Nx$ et $0<n<Nt$ en faisant varier le nombre de point d'espace $Nx$ (Figure 10)
 \end{enumerate}
 
 Voici les résultats obtenus:
@@ -497,25 +497,25 @@ Voici les résultats obtenus:
 \begin{figure}[H]
 \begin{center}
 \centering\epsfig{figure=erreur_dt.png,width=15cm}
-\caption{Les erreurs pour des variation de Nt\label{fig1}}
+\caption{Les erreurs pour des variation de $Nt$\label{fig1}}
 \end{center}
 \end{figure}
 
 \begin{figure}[H]
 \begin{center}
 \centering\epsfig{figure=erreurs_dx.png,width=15cm}
-\caption{Les erreurs pour des variation de Nx\label{fig1}}
+\caption{Les erreurs pour des variation de $Nx$\label{fig1}}
 \end{center}
 \end{figure}
 
 A partir de ces résultats, on peut déduire les ordres des erreurs:
 \begin{itemize}
     \item Les méthodes d'Euler ont des erreurs selon $x$ et $t$ d'ordre $O(N)$
-    \item La méthode de Runge-Kutta a des erreurs  d'ordre $O(N^2)$ puis constante selon $t$ et d'ordre $O(N)$ selon $x$.On peut déja remarquer que la précision n'augmente plus en diminuant $\Delta t$ à partir d'une certaine valeur. On peut également remarquer que selon $x$, l'erreur augmente brutalement au bout d'une certaine valeur, cela est dû au fait que la condition de stabilité du modèle n'est plus respectée. On peut remarquer grâce
+    \item La méthode de Runge-Kutta a des erreurs  d'ordre $O(N^2)$ puis constante selon $t$ et d'ordre $O(N)$ selon $x$.On peut déjà remarquer que la précision n'augmente plus en diminuant $\Delta t$ à partir d'une certaine valeur. On peut également remarquer que selon $x$, l'erreur augmente brutalement au bout d'une certaine valeur, cela est dû au fait que la condition de stabilité du modèle n'est plus respectée. On peut remarquer grâce
     \item Globalement la méthode d'Euler explicite est celle qui donne la meilleure précision.
 \end{itemize}
 
-Au final, on peut déduire que, dans notre cas, la méthode d'Euler explicite est la plus intéréssante puisqu'elle produit l'erreur la plus petite mais est également efficace en terme d'algorithme contrairement à la méthode de Runge-Kutta qui demande beaucoup plus de calculs pour avoir un résultat cohérent.
+Au final, on peut déduire que, dans notre cas, la méthode d'Euler explicite est la plus intéressante puisqu'elle produit l'erreur la plus petite mais est également efficace en terme d'algorithme contrairement à la méthode de Runge-Kutta qui demande beaucoup plus de calculs pour avoir un résultat cohérent.
 
 
 
@@ -524,13 +524,13 @@ Au final, on peut déduire que, dans notre cas, la méthode d'Euler explicite es
 \subsection{Variation des conditions initiales}
 
 
-L'analyse des méthodes utilisés pour la modélisation d'une onde  de corde de guitare repose aussi sur le choix des conditions initiales comme vu précédement.
+L'analyse des méthodes utilisées pour la modélisation d'une onde  de corde de guitare repose aussi sur le choix des conditions initiales comme vu précédemment.
 Un bon choix des conditions initiales est donc indispensable pour avoir une modélisation la plus proche de la réalité ou tout simplement celle qu'on souhaite.\\
 
 
-Dans cette partie, l'objectif est de tester les différents schémas pour différents profils initiaux de l'onde, qu'on obtiendra en modifiant les conditions initiales. \\
+Dans cette partie, l'objectif est de tester les différents schémas pour différents profils initiaux de l'onde, que l'on obtiendra en modifiant les conditions initiales. \\
 
-Ainsi, on pourra vérifier les réactions des différents modèles par rapport aux variations de conditions initiales et constater que, tant que les conditons initiales respectent les conditions imposées par le problème $(u(t,x=0)=u(t,x=L)=0)$, on obtient une solution numérique cohérente.\\
+Ainsi, on pourra visualiser les réactions des différents modèles par rapport aux variations de conditions initiales et constater que, tant que les conditions initiales respectent les conditions imposées par le problème $(u(t,x=0)=u(t,x=L)=0)$, on obtient une solution numérique cohérente.\\
 
 Dans un premier temps, on peut considérer une corde pincée en point de l'espace, qui est bien attachée sur les bords.
 On peut établir 2 modèles mathématiques différents pour la corde pincée du schéma suivant:
@@ -583,7 +583,7 @@ Dans un deuxième temps, nous allons étudier un troisième modèle où la corde
 
 
 \vspace*{2cm}
-\subsection{Implémentation des variations des conditions initiales dans les modéles}
+\subsection{Implémentation des variations des conditions initiales dans les modèles}
 
 
 \underline{Méthode d'Euler explicite}
