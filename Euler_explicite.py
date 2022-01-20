@@ -56,7 +56,7 @@ def y0x2(i):
 def y0x3(i):
     """int -> float
   Fonction de condition initiale
-    Corde pincée triangulaire"""
+    Modele harpe"""
     
     return A*(i*dx)*(L-i*dx)/(x0*L)
 
