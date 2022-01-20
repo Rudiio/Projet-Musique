@@ -19,7 +19,7 @@ Nous  allons par  exemple  observer  $u$  sur un intervalle de  temps
 régulier de pas $h$. Nous  allons  essayer  d'obtenir  une suite  d'approximations  $u_n$  de
 $u(t_n)$.\\
 
-Considérons le problème monodimensionnel de la vibration d'une corde de guitare. Le schéma de la vibration de guitare vérifie l'équation de d'Alembert :
+Considérons le problème monodimensionnel de la vibration d'une corde de guitare. Le schéma de la vibration de guitare vérifie l'équation de D'Alembert :
 \begin{equation*}
 \frac{\partial^2u}{\partial t^2} = c^{2}\frac{\partial^2u}{\partial x^2}
 \end{equation*}
@@ -33,7 +33,7 @@ On remplace ensuite les dérivées apparaissant dans l'équation par des quotien
 
 \section{Méthodes d'Euler}
 
-L'intervalle [0,L] est discrétisé en $Nx+1$ noeuds de coordonnées $x_{i}$ (i variant de 0 à $N$) régulièrement espacés. Notons $\Delta x$ le pas d'espace. L'intervalle de temps [0,T] est discrétisé quant à lui en Nt intervalles de pas constant $\Delta t$. Notons $u^{n}_{i}$ l'amplitude de la corde au noeud $x_{i} = i\Delta x$ et à l'instant $t = n\Delta t$\\\\
+L'intervalle $[0,L]$ est discrétisé en $Nx+1$ noeuds de coordonnées $x_{i}$ ($i$ variant de $0$ à $N$) régulièrement espacés. Notons $\Delta x$ le pas d'espace. L'intervalle de temps $[0,T]$ est discrétisé quant à lui en Nt intervalles de pas constant $\Delta t$. Notons $u^{n}_{i}$ l'amplitude de la corde au noeud $x_{i} = i\Delta x$ et à l'instant $t = n\Delta t$.\\\\
 
 \subsection{Schéma Explicite}
 
@@ -41,7 +41,7 @@ La méthode d'Euler explicite consiste à considérer que, d'un point $t^n_{i}$ 
 On peut alors approximer la fonction $(u(t_n,x_i)$ en  calculant $u^{n+1}_{i}$ connaissant $u^n_{i}$.\\
 
 
-Le problème se résout donc de la façon suivante:\\
+Le problème se résoud donc de la façon suivante:\\
 $\rightarrow$ on connaît la fonction f, un point tn où on connaît $u^n_{i}$\\
 $\rightarrow$ on peut donc calculer $u'(t)=f(t,u(t))$ \\
 $\rightarrow$ on estime alors la valeur de u au point $t_{n+1} = t_n + \Delta t$ : $u_{n+1} \approx u_n + u'_n\Delta t$\\
@@ -294,7 +294,8 @@ La description de l'algorithme utilisé est à retrouver en annexe 3.\\ Le code 
 Les méthodes de Runge-Kutta sont des schémas numériques à un pas qui permettent de résoudre des équations différentielles ordinaires.
 Elles sont appréciées pour leur précision grâce à des ordres plus élevés: 2 ou 4.\\
 
-Dans le cas de l'équation d'onde, l'utilisation d'une méthode de Runge Kutta n'est pas évidente étant donné qu'il s'agit d'une équation aux dérivées partielles d'ordre 2. Cependant, en utilisant le schéma d'Euler d'ordre 2 et quelques astuces, il est possible de la résoudre avec les méthodes de Runge-Kutta.
+Dans le cas de l'équation d'onde, l'utilisation d'une méthode de Runge Kutta n'est pas évidente étant donné qu'il s'agit d'une équation aux dérivées partielles d'ordre 2. Cependant, en utilisant la méthode des différences finies et quelques astuces, il est possible de la résoudre avec les méthodes de Runge-Kutta.
+Nous introduisons la même discrétisation de temps et d'espace que pour les méthodes d'Euler.
 
 \begin{enumerate}
     \item Discrétisation de l'espace avec un pas $\Delta x$ et approximation de $\frac{\partial^2u^n_{i}}{\partial x^2}$ par la méthode des différences finies.
@@ -349,7 +350,7 @@ Dans le cas de l'équation d'onde, l'utilisation d'une méthode de Runge Kutta n
       \begin{cases}
         (k_0)_{i}=\Delta t \times g(tn,u^n_{i},z^n_{i})\\
         (k_1)_{i}=\Delta t \times g(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_0)_{i}}{2},z^n_{i} +\frac{(l_0)_{i}}{2})\\
-        (k_1)_{i}=\Delta t \times g(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_1)_{i}}{2},z^n_{i} +\frac{(l_1)_{i}}{2})\\
+        (k_2)_{i}=\Delta t \times g(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_1)_{i}}{2},z^n_{i} +\frac{(l_1)_{i}}{2})\\
         (k_3)_{i}=\Delta t \times g(tn + \Delta t,u^n_{i} +(k_2)_{i},z^n_{i} +(l_2)_{i})\\
       \end{cases}
     \]
@@ -360,7 +361,7 @@ Dans le cas de l'équation d'onde, l'utilisation d'une méthode de Runge Kutta n
       \begin{cases}
         (l_0)_{i}=\Delta t \times f(tn,u^n_{i},z^n_{i})\\
         (l_1)_{i}=\Delta t \times f(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_0)_{i}}{2},z^n_{i} +\frac{(l_0)_{i}}{2})\\
-        (l_1)_{i}=\Delta t \times f(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_1)_{i}}{2},z^n_{i} +\frac{(l_1)_{i}}{2})\\
+        (l_2)_{i}=\Delta t \times f(tn + \frac{\Delta t}{2},u^n_{i} +\frac{(k_1)_{i}}{2},z^n_{i} +\frac{(l_1)_{i}}{2})\\
         (l_3)_{i}=\Delta t \times f(tn + \Delta t,u^n_{i} +(k_2)_{i},z^n_{i} +(l_2)_{i}
       \end{cases}
     \]\\
@@ -371,6 +372,5 @@ Pour les méthodes de Runge-Kutta, les conditions initiales sont également trè
 Dans le cas de l'équation d'onde, il faut que les valeurs de $u^n_{i}$ et de $\frac{\partial u^n_{i}}{\partial t}$ en t=0 soient connues afin de pouvoir calculer le reste des valeurs.\\
     
 \end{enumerate}
-
 La description de l'algorithme utilisé est à retrouver en annexe 3.\\
 Le code python est accessible via le lien github en annexe 4.

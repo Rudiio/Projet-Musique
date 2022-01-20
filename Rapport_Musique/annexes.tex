@@ -38,6 +38,7 @@ Pour la méthode  différences finies, on a utilisé les tableaux suivants pour 
 
 \section{Algorithmes}
 \subsection{Euler explicite}
+
 \begin{enumerate}
     \item Initialisation des pas $\Delta x$ et $\Delta t$\\
     Initialisation des nombre de points du temps Nt et du nombre de points de l'espace Nx
@@ -48,12 +49,9 @@ Pour la méthode  différences finies, on a utilisé les tableaux suivants pour 
     
     \item Tant que n<Nt faire:
         \begin{itemize}
-        Calculs de $U^{n+1}_i$ : $U^{n+1}_i = A.U^{n}_i - U^{n-1}_i + C_i$\\
-
-        
+        \item Calculs de $U^{n+1}_i$ : $U^{n+1}_i = A.U^{n}_i - U^{n-1}_i + C_i$\\
         \end{itemize}
     
-
 \end{enumerate}
 
 \subsection{Euler implicite}
@@ -94,7 +92,7 @@ Algorithme utilisé dans le code python:
 \end{enumerate}
 
 \section{Lien Github}
-Lien vers le répertoire Github contenant les différents codes python pour les 3 méthode:\\
+Lien vers le répertoire Github contenant les différents codes python utilisés au cours du projet:\\
 \url{https://github.com/Rudiio/Projet-Musique.git}
 
 \section{Tests complémentaires pour la méthode de Runge-Kutta}
@@ -104,7 +102,7 @@ Lien vers le répertoire Github contenant les différents codes python pour les 
 \caption{
         $\Delta x= 5^{-2}m $\\
         $\Delta t= 10^{-7}s$\\
-        $\alpha = 6.8.10^{-4}$
+        $\lambda = 6.8.10^{-4}$
     \label{fig1}
     }
 \end{minipage} \hfill
@@ -112,7 +110,7 @@ Lien vers le répertoire Github contenant les différents codes python pour les 
 \centering\epsfig{figure=44.png,width=7cm}
 \caption{$\Delta x= 5^{-3}m $\\ 
         $\Delta t= 10^{-6}s$\\
-        $\alpha = 0.068$
+        $\lambda = 0.068$
         \label{fig2}}
 \end{minipage}
 \end{figure}
@@ -121,15 +119,16 @@ Lien vers le répertoire Github contenant les différents codes python pour les 
 \begin{minipage}[b]{.46\linewidth}
 \centering\epsfig{figure=9_stab.png,width=7cm}
 \caption{$\Delta x= 5^{-4}m $\\ 
-        $\Delta t= \frac{\Delta x}{c}s= 1.47.10^{-6}s\Ds$\\
-        $\alpha = 1$
-        \label{fig1}}
+        $\Delta t= 1.47.10^{-6}s$\\
+        $\lambda = 1$
+        \label{fig1}
+        }
 \end{minipage} \hfill
 \begin{minipage}[b]{.46\linewidth}
 \centering\epsfig{figure=10.png,width=\linewidth}
 \caption{$\Delta x= 3^{-3} m $\\ 
         $\Delta t= 10^{-6}s  $\\
-        $\alpha = 0.113$
+        $\lambda = 0.113$
         \label{fig2}}
 \end{minipage}
 \end{figure}
